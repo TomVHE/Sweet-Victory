@@ -16,6 +16,8 @@ public class SettingsManager : DestroyableSingleton<SettingsManager>
 	public Color selected, unselected, bgColor;
 
 	public Image backButton;
+
+	public GameObject graphicsFirst, audioFirst;
  
 	
 
@@ -32,26 +34,31 @@ public class SettingsManager : DestroyableSingleton<SettingsManager>
 		for (int i = 0; i < panels.Count; i++)
 		{
 			panels[i].gameObject.SetActive(false);
-			//ChangeButtonColor(i);
 
 			if(i == tabnmr)
 			{
 				panels[i].gameObject.SetActive(true);
-				//ChangeColor(tabnmr);
+				SettingsTabMenu(tabnmr);
 			}
 		}
 	}
-	//changes color of the tabs			IS FUCKED NOW WITH NEW UI
-	public void ChangeColor (int numb)
+	public void SettingsTabMenu (int tabnmr) 
 	{
-		bgColor = panels[numb].color;
-		selected = bgColor;
-
-		foreach (var img in buttons)
+		//set first selected button to settings
+		if(tabnmr == 0)
 		{
-			img.color = unselected;
+			SelectedButton(graphicsFirst);
 		}
-		buttons[numb].color = selected;
+		if(tabnmr == 1)
+		{
+			SelectedButton(audioFirst);
+		}
+	}
+	public void SelectedButton (GameObject button)
+	{
+		EventSystem eventSystem = EventSystem.current;
+
+        eventSystem.SetSelectedGameObject(button);
 	}
 	//activates the settings or deactivates it
 	public void ActivateSettings (bool state) 
