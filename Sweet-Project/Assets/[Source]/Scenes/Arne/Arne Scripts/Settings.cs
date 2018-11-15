@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Settings : MonoBehaviour {
 
 
-
-	public bool fullscreen;
-
+	public AudioMixer audioMixer;
 
 	#region Graphics
 	public void VSync (bool state)
@@ -20,7 +19,6 @@ public class Settings : MonoBehaviour {
 		{
 			QualitySettings.vSyncCount = 0;
 		}
-		print(state + "vsync");
 	}
 	public void Fullscreen (bool state)
 	{
@@ -33,7 +31,6 @@ public class Settings : MonoBehaviour {
 			Screen.fullScreen = false;
 			Resolution(1280, 800, false);
 		}
-		print(state + "fullscreen");
 	}
 	public void Resolution (int wid, int hei, bool state)
 	{
@@ -43,15 +40,15 @@ public class Settings : MonoBehaviour {
 	#region Audio
 	public void MasterVolume (float value)
 	{
-		
+		audioMixer.SetFloat("Master", value);
 	}
 	public void EffectVolume (float value)
 	{
-		
+		audioMixer.SetFloat("Effects", value);
 	}
 	public void MusicVolume (float value)
 	{
-		
+		audioMixer.SetFloat("Music", value);
 	}
 	#endregion
 }
