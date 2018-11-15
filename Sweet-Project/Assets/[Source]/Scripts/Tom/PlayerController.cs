@@ -146,6 +146,7 @@ namespace Tom
             _controller = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             FindObjectOfType<PauseMenu>().Menu += Menu;
+            FindObjectOfType<EffectsManager>().Subscribe(myDamageableBehaviour);
 
             if (head != null)
             {
@@ -265,7 +266,6 @@ namespace Tom
             {
                 if (_item == null)
                 {
-                    print(_item);
                     _animator.SetTrigger("L Punch");
                 }
                 else
@@ -280,7 +280,6 @@ namespace Tom
             {
                 if (_item == null)
                 {
-                    print(_item);
                     _animator.SetTrigger("R Punch");
                 }
                 else

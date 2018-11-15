@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-//using Core.Damage;
-//using Tom;
+using Core.Damage;
+using Tom;
 
-public class EffectsManager : MonoBehaviour {
-/* 
+public class EffectsManager : DestroyableSingleton<EffectsManager>
+{
 	#region Variables
 
 	[Space(10)]
@@ -23,76 +23,33 @@ public class EffectsManager : MonoBehaviour {
 
 	#endregion
 
-	void Awake ()
-	{
-		#region NullChecks
-		if(jumpParticle == null)
-		{
-			Debug.LogError("jump particle is NULL");
-		}
-		if(landParticle == null)
-		{
-			Debug.LogError("land particle is NULL");
-		}
-		if(hitParticle == null)
-		{
-			Debug.LogError("hit particle is NULL");
-		}
-		if(deathExplosionParticle == null)
-		{
-			Debug.LogError("deathexplosion particle is NULL");
-		}
-		if(jumpSource == null)
-		{
-			Debug.LogError("jump source is NULL");
-		}
-		if(landSource == null)
-		{
-			Debug.LogError("land source is NULL");
-		}
-		if(hitSource == null)
-		{
-			Debug.LogError("hit source is NULL");
-		}
-		if(kaboomSource == null)
-		{
-			Debug.LogError("kaboom source is NULL");
-		}
-		#endregion
+    public void Subscribe(DamageableBehaviour player)
+    {
+        player.configuration.LostLife += (damageInfo) => DeathExplosionParticle(damageInfo, player.Position);
+        player.configuration.Damaged += HitParticle;
 
-		#region Event Subscriber
-		foreach (var player in FindObjectsOfType<DamageableBehaviour>())
-		{
-			player.configuration.LostLife += (damageInfo) => DeathExplosionParticle(damageInfo, player.Position);
-			player.configuration.Damaged += HitParticle;
-		}
-		foreach (var player in FindObjectsOfType<PlayerController>())
-		{
-			player.JumpEvent += JumpParticle;
-			player.LandEvent += LandParticle;
-		}
-		#endregion
-	}
+        PlayerController controller = player.transform.GetComponentInChildren<PlayerController>();
+
+        controller.JumpEvent += JumpParticle;
+        controller.LandEvent += LandParticle;
+    }
+
 	#region Particles&Sound
 	private void DeathExplosionParticle (DamageChangeInfo info, Vector3 deathPos)
 	{
-		Destroy(Instantiate(deathExplosionParticle, deathPos, Quaternion.identity), 2);
-		kaboomSource.Play();	
+		Destroy(Instantiate(deathExplosionParticle, deathPos, Quaternion.identity).gameObject, 2);
 	}
 	public void HitParticle (HitInfo info)
 	{
-		Destroy(Instantiate(hitParticle, info.damagePoint, Quaternion.identity), 1);
-		hitSource.Play();
+		Destroy(Instantiate(hitParticle, info.damagePoint, Quaternion.identity).gameObject, 1);
 	}
 	public void JumpParticle (Vector3 pos)
 	{
-		Destroy(Instantiate(jumpParticle, pos, Quaternion.identity), 2);
-		jumpSource.Play();
+        Destroy(Instantiate(jumpParticle, pos, Quaternion.identity).gameObject, 1);
 	}
 	public void LandParticle (Vector3 pos)
 	{
-		Destroy(Instantiate(landParticle, pos, Quaternion.identity), 2);
-		landSource.Play();	
+		Destroy(Instantiate(landParticle, pos, Quaternion.identity).gameObject, 2);
 	}
-	#endregion*/
+	#endregion
 }
