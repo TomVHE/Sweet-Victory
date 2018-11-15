@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoundTimer : Singleton<RoundTimer> 
+public class RoundTimer : DestroyableSingleton<RoundTimer> 
 {
 
 

@@ -5,19 +5,20 @@ using System.Collections.Generic;
 using Rewired;
 using Sirenix.OdinInspector;
 using Random = UnityEngine.Random;
+//using Core.Movement;
+//using MovementController = Core.Movement.MovementController;
 using PlayerController = Tom.PlayerController;
 using Core.Damage;
+using Core.Utilities;
 using JacobGames.SuperInvoke;
 
 public class PlayerPool : DestroyableSingleton<PlayerPool>
 {
     #region Variables
 
-    #region Editor Variables
+    #region Serialized
 
     [SerializeField] private Team[] teams = new Team[4];
-
-    [NonSerialized] public List<PoolablePlayer> characters = new List<PoolablePlayer>();
 
     [AssetsOnly]
     [SerializeField] private GameObject playerPrefab;
@@ -30,7 +31,9 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
 
     #endregion
 
-    public event Action<int> PlayerJoined, PlayerLeft;
+    #region Non-Serialized
+
+    [NonSerialized] public List<PoolablePlayer> players = new List<PoolablePlayer>();
 
     private List<PlayerMap> playerMap;
 
@@ -41,12 +44,6 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
             return ReInput.isReady ? ReInput.players.Players : null;
         }
     }
-
-    //private bool[] spawned = new bool[4];
-
-    //private List<Transform> characterRoots = new List<Transform>();
-
-    //private HealthManager m_HealthManager = null;
 
     private class PlayerMap
     {
@@ -60,59 +57,74 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         }
     }
 
-    [Serializable]
-    public class Team
-    {
-        [AssetsOnly]
-        [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
-        public Material material;
-        [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
-        public Color color = Color.white;
-        [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
-        public Alignment alignment;
-    }
-
-    //private int characterId = 0;
-
     private LevelManager levelManager;
+
+    #endregion
+
+    #region Events
+
+    public event Action<int> PlayerJoined, PlayerLeft;
+
+    #endregion
 
     #endregion
 
     #region Methods
 
-    private void Start()
+    //EDIT
+    public void Init()
     {
-        //characters.ForEach(c => characterRoots.Add(c.root));
+        //Debug.Log("Frans zijn rughaar");
+
+        levelManager = GameManager.LevelManager;
 
         pool.gameObject.SetActive(false);
-
-        levelManager = FindObjectOfType<LevelManager>();
     }
 
     private void Update()
     {
         if (!ReInput.isReady) { return; }
 
+        foreach(PoolablePlayer player in players)
+        {
+            player.DamageableConfig.LostLife += OnLostLife;
+            player.DamageableConfig.Finished += OnFinished;
+        }
+
+        //player.configuration.LostLife += (damageInfo) => DeathExplosionParticle(damageInfo, player.Position);
+        //player.configuration.Damaged += HitParticle;
+
         AssignJoysticksToPlayers();
 
         for (int id = 0; id < playerMaps.Count; id++)
         {
-            //if (spawned[id] == false) //First Spawn
-            if (characters.ElementAtOrDefault(id) == null)
+            if (players.ElementAtOrDefault(id) == null)
             {
-                var level = levelManager.hubLevel;
+                Level level = levelManager.levels[0];
+
+                if (level == null) { Debug.LogError("HubLevel is NULL"); }
 
                 if (playerMaps[id].controllers.joystickCount > 0)
                 {
-                    //if()
                     Initialize(id, level.RandomSpawnPoint());
-                    //m_HealthManager.PlayerSpawn(id);
-
                 }
+
             }
         }
 
     }
+
+    private void OnLostLife(DamageChangeInfo info)
+    {
+        DeSpawn(info.playerID);
+    }
+    private void OnFinished(DamageChangeInfo info)
+    {
+        Delete(info.playerID);
+    }
+
+
+    #region Editor Classes
 
     private bool ValidateVariable(Transform input)
     {
@@ -125,13 +137,15 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         return validation;
     }
 
+    #endregion
+
     #region Spawning & Despawning
 
     public void Initialize(int playerID)
     {
-        if (levelManager.currentlevel != null)
+        if (levelManager.CurrentLevel != null)
         {
-            Initialize(playerID, levelManager.currentlevel.RandomSpawnPoint(), Quaternion.identity);
+            Initialize(playerID, levelManager.CurrentLevel.RandomSpawnPoint(), Quaternion.identity);
         }
         else
         {
@@ -153,37 +167,31 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         if (controller == null)
             Debug.LogError("ERROR: Couldn't find PlayerController");
 
-        DamageableBehaviour damageable = playerObject.GetComponentInChildren<DamageableBehaviour>();
-        if (damageable == null)
+        DamageableBehaviour initDamageable = playerObject.GetComponentInChildren<DamageableBehaviour>();
+        if (initDamageable == null)
             Debug.LogError("ERROR: Couldn't find DamageableBehaviour");
-
-        var Character = new PoolablePlayer
-        {
-            //transform = controller.root,
-            playerController = controller,
-            damageable = damageable
-        };
 
         controller.myID = playerID;
 
-        //new PoolablePlayer { }
-
-        //characters.Add();
-
-        if (damageable != null)
+        PoolablePlayer PlayerInit = new PoolablePlayer
         {
-            damageable.configuration.playerID = playerID;
-            damageable.configuration.AlignmentProvider = teams[playerID].alignment;
+            movementController = controller,
+            damageableBehaviour = initDamageable
+        };
 
-            var meshRenderer = damageable.configuration.materialObject.GetComponentInChildren<SkinnedMeshRenderer>();
-            //var meshRenderer = damageable.configuration.materialObject.GetComponentInChildren<MeshRenderer>();
+        if (PlayerInit.DamageableConfig != null)
+        {
+            PlayerInit.DamageableConfig.playerID = playerID;
+            PlayerInit.DamageableConfig.AlignmentProvider = teams[playerID].alignment;
+
+            var meshRenderer = PlayerInit.DamageableConfig.materialObject.GetComponentInChildren<SkinnedMeshRenderer>();
+
             if (meshRenderer != null)
             {
-                //Debug.Log("IJSCOKRAAM");
                 meshRenderer.material = teams[playerID].material;
             }
 
-            damageable.IsAlive = true;
+            PlayerInit.DamageableConfig.IsAlive = true;
         }
         else
         {
@@ -192,25 +200,14 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
 
         PlayerJoined?.Invoke(playerID);
 
-        //Debug.Log(playerID);
-
-        //characters[playerID] = Character;
-        characters.Add(Character);
-    }
-
-    public void Finish(int playerID)
-    {
-        //Destroy(characters[playerID].playerController.transform.gameObject); EDIT
-        //characters.RemoveAt(playerID);
-        Debug.Log("FINISH HIM");
-        PlayerLeft?.Invoke(playerID);
+        players.Add(PlayerInit);
     }
 
     public void Spawn(int playerID)
     {
-        if (levelManager.currentlevel != null)
+        if (levelManager.CurrentLevel != null)
         {
-            Spawn(playerID, levelManager.currentlevel.RandomSpawnPoint(), Quaternion.identity);
+            Spawn(playerID, levelManager.CurrentLevel.RandomSpawnPoint(), Quaternion.identity);
         }
         else
         {
@@ -224,49 +221,53 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
     public void Spawn(int playerID, Vector3 position, Quaternion rotation)
     {
         //Debug.Log("spawning at " + characters[playerID].damageable.transform.root.name);
-        if(characters[playerID] == null)
+        if(players[playerID] == null)
         {
             Debug.LogError("Couldn't Spawn, character is NULL");
         }
 
-        characters[playerID].IsAlive = true;
+        players[playerID].IsAlive = true;
 
-        characters[playerID].damageable.transform.parent = pool.parent;
-
-        var characterTransform = characters[playerID].damageable.transform;
+        Transform characterTransform = players[playerID].damageableBehaviour.transform;
 
         for(int i = 0; i <= characterTransform.childCount - 1; i++)
         {
             characterTransform.GetChild(i).SetPositionAndRotation(position, rotation);
 
-            Debug.Log(string.Format("int = {0}, obj {1}, pos = {2}, rot = {3}",i , characterTransform.GetChild(i) , position, rotation));
+            //Debug.Log(string.Format("int = {0}, obj {1}, pos = {2}, rot = {3}",i , characterTransform.GetChild(i) , position, rotation));
         }
 
-        /*
-        characters[playerID].damageable.transform.GetChild(0).transform.position = position;
-        characters[playerID].playerController.transform.rotation = rotation;
-        characters[playerID].playerController.transform.position = position;
-        characters[playerID].playerController.transform.rotation = rotation;
-        */
+        players[playerID].damageableBehaviour.transform.GetComponentInChildren<RootMotion.Dynamics.PuppetMaster>().mode = RootMotion.Dynamics.PuppetMaster.Mode.Active;
 
+        characterTransform.parent = pool.parent;
     }
 
     public void DeSpawn(int playerID)
     {
-        if (characters[playerID].IsAlive)
+        if (players[playerID].IsAlive)
         {
             Debug.Log(string.Format("respawning player {0} in {1} seconds...", playerID, respawnTime));
-            characters[playerID].IsAlive = false;
+            players[playerID].IsAlive = false;
 
-            //characters[playerID].MyTransform.parent = pool;
+            Transform characterTransform = players[playerID].damageableBehaviour.transform;
 
-            //characters[playerID].damageable.transform.parent = pool;
+            players[playerID].damageableBehaviour.transform.GetComponentInChildren<RootMotion.Dynamics.PuppetMaster>().mode = RootMotion.Dynamics.PuppetMaster.Mode.Disabled;
 
-            characters[playerID].ResetDamage();
+            characterTransform.parent = pool;
 
-            SuperInvoke.Run(() => Spawn(playerID), (respawnTime != 0 ? respawnTime : 3));
+            players[playerID].ResetDamage();
+
+            SuperInvoke.Run( () => Spawn(playerID), (respawnTime != 0 ? respawnTime : 3));
         }
 
+    }
+
+    public void Delete(int playerID)
+    {
+        //Destroy(characters[playerID].playerController.transform.gameObject); EDIT
+        //characters.RemoveAt(playerID);
+        Debug.Log("FINISH HIM");
+        PlayerLeft?.Invoke(playerID);
     }
 
     #endregion
@@ -281,9 +282,6 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         {
             Joystick joystick = joysticks[i];
             if (ReInput.controllers.IsControllerAssigned(joystick.type, joystick.id)) continue; //Next iteration if joystick is already assigned to a Player
-
-            //if (joystick.GetAnyButtonDown())
-            //if (playerMaps[i].GetButtonDown("JoinGame"))
 
             if (joystick.GetAnyButtonDown())
             {
@@ -320,38 +318,55 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
     #endregion
 
     #endregion
-
 }
 
 [Serializable]
 public class PoolablePlayer : IComparable<PoolablePlayer>
 {
-    //[NonSerialized] public Transform transform;
-    /*
-    public Transform MyTransform
+    [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
+    [SerializeField] public PlayerController movementController;
+
+    [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
+    [SerializeField] public DamageableBehaviour damageableBehaviour;
+
+    //EDIT
+    public Damageable DamageableConfig
     {
         get
         {
-            return (playerController.transform.root);
+            if (damageableBehaviour != null)
+            {
+                return damageableBehaviour.configuration;
+            }
+            else
+            {
+                Debug.LogError("PoolablePlayer doesn't have an DamageableBehaviour is NULL");
+                return null;
+            }
         }
     }
-    */
 
-    [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
-    [SerializeField] public PlayerController playerController;
-
-    [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
-    [SerializeField] public DamageableBehaviour damageable;
+    public int PlayerID
+    {
+        get
+        {
+            return DamageableConfig.playerID;
+        }
+        set
+        {
+            DamageableConfig.playerID = value;
+        }
+    }
 
     public bool IsAlive
     {
         get
         {
-            return damageable.IsAlive;
+            return DamageableConfig.IsAlive;
         }
         set
         {
-            damageable.IsAlive = value;
+            DamageableConfig.IsAlive = value;
         }
     }
 
@@ -359,11 +374,11 @@ public class PoolablePlayer : IComparable<PoolablePlayer>
     {
         get
         {
-            return damageable.configuration.CurrentLives;
+            return DamageableConfig.CurrentLives;
         }
         set
         {
-            damageable.configuration.SetLives(value);
+            DamageableConfig.SetLives(value);
         }
     }
 
@@ -371,22 +386,22 @@ public class PoolablePlayer : IComparable<PoolablePlayer>
     {
         get
         {
-            return damageable.configuration.CurrentDamage;
+            return DamageableConfig.CurrentDamage;
         }
         set
         {
-            damageable.configuration.SetDamage(value);
+            DamageableConfig.SetDamage(value);
         }
     }
 
     public bool CanKnockback(IAlignmentProvider attackerAlignment)
     {
-        return damageable.CanKnockback(attackerAlignment);
+        return damageableBehaviour.CanKnockback(attackerAlignment);
     }
 
     public void ResetDamage()
     {
-        damageable.configuration.ResetDamage();
+        DamageableConfig.ResetDamage();
     }
 
     public int CompareTo(PoolablePlayer other)
@@ -411,4 +426,17 @@ public class PoolablePlayer : IComparable<PoolablePlayer>
 
         return 0;
     }
+
+}
+
+[Serializable]
+public class Team
+{
+    [AssetsOnly]
+    [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
+    public Material material;
+    [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
+    public Color color = Color.white;
+    [HorizontalGroup("Group 1", LabelWidth = 2), HideLabel]
+    public Alignment alignment;
 }
