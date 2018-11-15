@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1341679881282118}
+  m_IsPrefabAsset: 1
+--- !u!1 &1341679881282118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4437827916919390}
+  - component: {fileID: 114619519873191694}
+  - component: {fileID: 114683217922882370}
+  m_Layer: 0
+  m_Name: '[Destroyable Managers]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4437827916919390
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341679881282118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114619519873191694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341679881282118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f918c62c9adb7458f1c7a2b48effd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels:
+  - levelPrefab: {fileID: 0}
+    spawnPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    levelSelector: {fileID: 0}
+  - levelPrefab: {fileID: 0}
+    spawnPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    levelSelector: {fileID: 0}
+  - levelPrefab: {fileID: 0}
+    spawnPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    levelSelector: {fileID: 0}
+  hubLevel:
+    levelPrefab: {fileID: 0}
+    spawnPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  hubMusic: {fileID: 0}
+  thisScene: WaltersBS
+  timeToLoad: 2
+  audioPlayer: {fileID: 0}
+--- !u!114 &114683217922882370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341679881282118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccb7408e8ad61a41aab09733cd425ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teams:
+  - material: {fileID: 2100000, guid: ecb29f3a1ddfcc645a0ed9eef9b3bf7a, type: 2}
+    alignment: {fileID: 11400000, guid: c82a5ae287021294a816aca0243b76de, type: 2}
+  - material: {fileID: 2100000, guid: f03d6693353447e44ab9df9c89520c6d, type: 2}
+    alignment: {fileID: 11400000, guid: c95b251b288d4a44c97f005c655c3078, type: 2}
+  - material: {fileID: 2100000, guid: 80ae956a5170766449639f154f647d49, type: 2}
+    alignment: {fileID: 11400000, guid: 1f6b662d5aba2d849b2d98c97929dcea, type: 2}
+  - material: {fileID: 2100000, guid: 2fc101a91ccba5a41800e26b0f8956f2, type: 2}
+    alignment: {fileID: 11400000, guid: a34e0f7d17301e54aa274c5af32b9e53, type: 2}
+  playerPrefab: {fileID: 1989710265998024, guid: cd91b78071c3c1e44a946ee606b73cbf,
+    type: 2}
+  respawnTime: 2
+  pool: {fileID: 0}
