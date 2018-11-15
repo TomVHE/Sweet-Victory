@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2573724, g: 0.33262557, b: 3.023468, a: 1}
+  m_IndirectSpecularColor: {r: 0.25780046, g: 0.33270505, b: 3.023391, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19467,6 +19467,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c5ff8028336d445ab5cf03733e2c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpParticle: {fileID: 0}
+  landParticle: {fileID: 0}
+  hitParticle: {fileID: 0}
+  deathExplosionParticle: {fileID: 0}
+  jumpSource: {fileID: 0}
+  landSource: {fileID: 0}
+  hitSource: {fileID: 0}
+  kaboomSource: {fileID: 0}
 --- !u!114 &916105061 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114619519873191694, guid: a86140d4b21479d4fbe4388d871c0328,
@@ -39343,6 +39351,36 @@ Prefab:
         type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114317631494317256, guid: fef9b8aa28876d441a43085bc18e5de4,
+        type: 2}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114864850110841188, guid: fef9b8aa28876d441a43085bc18e5de4,
+        type: 2}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114487068420804506, guid: fef9b8aa28876d441a43085bc18e5de4,
+        type: 2}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114317631494317256, guid: fef9b8aa28876d441a43085bc18e5de4,
+        type: 2}
+      propertyPath: m_MaxValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114864850110841188, guid: fef9b8aa28876d441a43085bc18e5de4,
+        type: 2}
+      propertyPath: m_MaxValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114487068420804506, guid: fef9b8aa28876d441a43085bc18e5de4,
+        type: 2}
+      propertyPath: m_MaxValue
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fef9b8aa28876d441a43085bc18e5de4, type: 2}

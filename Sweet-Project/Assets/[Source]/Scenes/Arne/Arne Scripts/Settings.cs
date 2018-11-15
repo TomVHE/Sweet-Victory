@@ -40,15 +40,15 @@ public class Settings : MonoBehaviour {
 	#region Audio
 	public void MasterVolume (float value)
 	{
-		audioMixer.SetFloat("Master", value);
+		audioMixer.SetFloat("MasterVolume", value);
 	}
 	public void EffectVolume (float value)
 	{
-		audioMixer.SetFloat("Effects", value);
+		audioMixer.SetFloat("EffectsVolume", value);
 	}
 	public void MusicVolume (float value)
 	{
-		audioMixer.SetFloat("Music", value);
+		audioMixer.SetFloat("MusicVolume", value);
 	}
 	#endregion
 }
