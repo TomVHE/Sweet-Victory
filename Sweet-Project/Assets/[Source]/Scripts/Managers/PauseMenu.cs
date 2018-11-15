@@ -20,7 +20,7 @@ public class PauseMenu : Singleton<PauseMenu>
 
 	public GameObject resumeButton, settingsButton;
 
-	public GameObject levelSelectObject;
+	//public GameObject levelSelectObject;
 
     //Tom
     public event Action<bool> Menu;
@@ -91,9 +91,13 @@ public class PauseMenu : Singleton<PauseMenu>
 			SelectedButton(resumeButton);
 		}
 	}
+	public void LevelSelector ()
+	{
+		//go to hub
+	}
 	public void LevelSelect (bool state) 
 	{
-		levelSelectObject.SetActive(state);
+		//levelSelectObject.SetActive(state);
 		//get a vote warning for going to level select
 	}
 	public void QuitGame ()
