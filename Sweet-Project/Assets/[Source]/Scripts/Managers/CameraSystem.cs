@@ -47,12 +47,12 @@ public class CameraSystem : MonoBehaviour
         }
 
         Vector3 targetPos = Vector3.SmoothDamp(lastLookTarget, bounds.center + lookOffset, ref lookVelocity, smoothTime / 2);
-        transform.LookAt(targetPos);
+        cam.transform.LookAt(targetPos);
         lastLookTarget = targetPos;
 
         // Position Section
         Vector3 desiredPos = targetPos + positionOffset;
-        transform.position = Vector3.SmoothDamp(transform.position, desiredPos, ref moveVelocity, smoothTime);
+        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, desiredPos, ref moveVelocity, smoothTime);
     }
 
     private void GetBounds(List<Vector3> playerPositions)
