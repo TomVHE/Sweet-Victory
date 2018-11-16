@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: LowPolyWater
+  m_Name: LowPolyWater 1
   m_Shader: {fileID: 4800000, guid: 85ca5b313d9f6524ab28d86c813632d1, type: 3}
   m_ShaderKeywords: _EMISSION _LOWPOLY_ON
   m_LightmapFlags: 1
@@ -104,7 +104,7 @@ Material:
     - __dirty: 0
     - _isInnerAlphaBlendOrColor: 0
     m_Colors:
-    - _BaseColor: {r: 0.18943575, g: 0.7880964, b: 0.9339623, a: 0.5}
+    - _BaseColor: {r: 0.32156864, g: 0.14509805, b: 0.06666667, a: 0.5}
     - _BumpDirection: {r: 1, g: 1, b: -1, a: 1}
     - _BumpTiling: {r: 1, g: 1, b: -2, a: 3}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

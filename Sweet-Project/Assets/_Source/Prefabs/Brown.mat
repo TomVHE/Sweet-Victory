@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: LowPolyWater
-  m_Shader: {fileID: 4800000, guid: 85ca5b313d9f6524ab28d86c813632d1, type: 3}
-  m_ShaderKeywords: _EMISSION _LOWPOLY_ON
-  m_LightmapFlags: 1
+  m_Name: Brown
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -38,23 +38,11 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Foam:
-        m_Texture: {fileID: 2800000, guid: 9fbef4b79ca3b784ba023cb1331520d5, type: 3}
-        m_Scale: {x: 20, y: 20}
-        m_Offset: {x: 0, y: 0}
-    - _FoamDistortion:
-        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalOnlyNoPolyMode:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -66,51 +54,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _ShoreTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _WaveGuide:
-        m_Texture: {fileID: 2800000, guid: 31890676c5b178840848afa665cb5a2f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texcoord:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FoamDist: 0.17850682
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LowPoly: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Opacity: 0.938
     - _Parallax: 0.02
-    - _Shininess: 10
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaveHeight: 0.39
-    - _WaveSpeed: 0.06
     - _ZWrite: 1
-    - __dirty: 0
-    - _isInnerAlphaBlendOrColor: 0
     m_Colors:
-    - _BaseColor: {r: 0.18943575, g: 0.7880964, b: 0.9339623, a: 0.5}
-    - _BumpDirection: {r: 1, g: 1, b: -1, a: 1}
-    - _BumpTiling: {r: 1, g: 1, b: -2, a: 3}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Foam: {r: 0.1, g: 0.375, b: 0, a: 0}
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
-    - _InvFadeParemeter: {r: 0.2, g: 0.39, b: 0.5, a: 1}
-    - _SpecColor: {r: 0.6320754, g: 0.42474738, b: 0.2951673, a: 1}
-    - _WaterColor: {r: 0.043137208, g: 0.4470588, b: 1, a: 1}
