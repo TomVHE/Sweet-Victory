@@ -17,6 +17,8 @@ public class LevelManager : DestroyableSingleton<LevelManager>
     [SerializeField] private float voteTime = 3;
     private int[] votes;
 
+    private bool spawning;
+
     public void Init()
     {
         for (int level = 1; level < levels.Length; level++)
@@ -25,7 +27,7 @@ public class LevelManager : DestroyableSingleton<LevelManager>
         }
         votes = new int[levels.Length];
 
-        StartCoroutine(WaitForVotes());
+        //StartCoroutine(WaitForVotes());
     }
 
     public void ResetLevel()
@@ -33,6 +35,7 @@ public class LevelManager : DestroyableSingleton<LevelManager>
         SceneManager.LoadScene(lobbyLevelName, LoadSceneMode.Single);
     }
 
+    /*
     private IEnumerator WaitForVotes()
     {
         Func<bool> hasVoted = delegate ()
@@ -86,43 +89,83 @@ public class LevelManager : DestroyableSingleton<LevelManager>
 
             // Finish remaining time UI
             resetLight();
+
             break;
         }
-
         SelectLevel();
     }
+    */
 
-    public void Voted(int index)
+    public void Vote(int index)
     {
-        //Debug.Log("vote");
+        Debug.Log("vote");
 
         votes[index]++;
     }
 
-    public void UnVoted(int index)
+    public void UnVote(int index)
     {
-        //Debug.Log("unvote");
+        Debug.Log("unvote");
 
         votes[index]--;
     }
 
-	public void SelectLevel()
+    public void Update()
     {
-        Debug.Log("SelectLevel");
-
-        List<int> votable = new List<int>();
+        List<int> combinedVotes = new List<int>();
 
         for (int i = 0; i < votes.Length; i++)
+        {
             for (int j = 0; j < votes[i]; j++)
-                votable.Add(i);
+            {
+                combinedVotes.Add(i);
+            }
+        }
 
-        int selectedLevel = votable[UnityEngine.Random.Range(0, votable.Count - 1)];
+        if(combinedVotes.Count > 0) // -1
+        {
+            if (!spawning)
+            {
+                Invoke("SelectLevel", voteTime);
+            }
+        }
+        else
+        {
+            spawning = false;
+            CancelInvoke("SelectLevel");
+        }
+    }
+
+	public void SelectLevel()
+    {
+        spawning = true;
+        Debug.Log("SelectLevel");
+
+        List<int> combinedVotes = new List<int>();
+
+        for (int i = 0; i < votes.Length; i++)
+        {
+            for (int j = 0; j < votes[i]; j++)
+            {
+                combinedVotes.Add(i);
+            }
+        }
+
+        int selectedLevel = combinedVotes[UnityEngine.Random.Range(0, combinedVotes.Count)]; //- 1
 
         for (int level = 0; level < levels.Length; level++)
+        {
             levels[level].levelObject.SetActive(false);
+        }
+
         levels[selectedLevel].levelObject.SetActive(true);
 
         GameManager.OnSelectedLevel();
+    }
+
+    public void LoadLevel()
+    {
+
     }
 }
 

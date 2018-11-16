@@ -11,7 +11,7 @@ public class LevelSelecter : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.LevelManager.Voted(index);
+            GameManager.LevelManager.Vote(index);
         }
     }
 
@@ -19,7 +19,7 @@ public class LevelSelecter : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.LevelManager.UnVoted(index);
+            GameManager.LevelManager.UnVote(index);
         }
     }
 }
