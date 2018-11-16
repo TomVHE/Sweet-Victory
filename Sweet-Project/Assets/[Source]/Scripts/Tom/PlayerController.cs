@@ -347,7 +347,10 @@ namespace Tom
                     {
                         float knockback = 1f + (damageable.configuration.CurrentDamage / 100f); //EDIT
 
-                        var info = new HitInfo();
+                        var info = new HitInfo
+                        {
+                            damagePoint = hit.point
+                        };
 
                         bool canKnockBack = (myAlignment != damageable.configuration.AlignmentProvider);
 
@@ -482,7 +485,10 @@ namespace Tom
                     {
                         float knockback = 1f + (damageable.configuration.CurrentDamage / 100f); //EDIT
 
-                        var info = new HitInfo();
+                        var info = new HitInfo
+                        {
+                            damagePoint = hit.point
+                        };
 
                         bool canKnockBack = (myAlignment != damageable.configuration.AlignmentProvider);
 

@@ -19,7 +19,7 @@ public class LevelManager : DestroyableSingleton<LevelManager>
 
     public void Init()
     {
-        for (int level = 0; level < levels.Length; level++)
+        for (int level = 1; level < levels.Length; level++)
         {
             levels[level].levelObject.SetActive(false);
         }
