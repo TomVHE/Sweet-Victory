@@ -11,7 +11,7 @@ namespace Core.Damage
         /// Gets or sets the damage change info.
         /// </summary>
         /// <value>The damage change info.</value>
-        public DamageChangeInfo damageInfo;
+        public DamageChangeInfo damageChangeInfo;
 
         /// <summary>
         /// Gets or sets the damage point.
@@ -28,7 +28,7 @@ namespace Core.Damage
         /// <param name="damagePoint">Damage point.</param>
         public HitInfo(DamageChangeInfo info, Vector3 point)//, int id)
         {
-            damageInfo = info;
+            damageChangeInfo = info;
             damagePoint = point;
             //playerID = id;
         }

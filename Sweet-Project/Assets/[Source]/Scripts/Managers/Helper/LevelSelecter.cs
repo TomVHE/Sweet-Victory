@@ -9,11 +9,17 @@ public class LevelSelecter : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.LevelManager.Voted(index);
+        if (other.CompareTag("Player"))
+        {
+            GameManager.LevelManager.Voted(index);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GameManager.LevelManager.UnVoted(index);
+        if (other.CompareTag("Player"))
+        {
+            GameManager.LevelManager.UnVoted(index);
+        }
     }
 }

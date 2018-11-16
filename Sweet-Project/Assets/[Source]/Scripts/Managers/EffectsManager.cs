@@ -26,6 +26,7 @@ public class EffectsManager : DestroyableSingleton<EffectsManager>
     public void Subscribe(DamageableBehaviour player)
     {
         player.configuration.LostLife += (damageInfo) => DeathExplosionParticle(damageInfo, player.Position);
+        //player.configuration.Damaged += HitParticle;
         player.configuration.Damaged += HitParticle;
 
         PlayerController controller = player.transform.GetComponentInChildren<PlayerController>();
@@ -39,10 +40,16 @@ public class EffectsManager : DestroyableSingleton<EffectsManager>
 	{
 		Destroy(Instantiate(deathExplosionParticle, deathPos, Quaternion.identity).gameObject, 2);
 	}
-	public void HitParticle (HitInfo info)
-	{
-		Destroy(Instantiate(hitParticle, info.damagePoint, Quaternion.identity).gameObject, 1);
+    public void HitParticle(HitInfo info)
+    {
+        Destroy(Instantiate(hitParticle, info.damagePoint, Quaternion.identity).gameObject, 1);
+    }
+    /*
+    public void HitParticle(Vector3 pos)
+    {
+		Destroy(Instantiate(hitParticle, pos, Quaternion.identity).gameObject, 1);
 	}
+    */
 	public void JumpParticle (Vector3 pos)
 	{
         Destroy(Instantiate(jumpParticle, pos, Quaternion.identity).gameObject, 1);

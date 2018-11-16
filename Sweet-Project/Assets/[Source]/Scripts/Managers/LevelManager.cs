@@ -14,7 +14,7 @@ public class LevelManager : DestroyableSingleton<LevelManager>
 
     [SerializeField] private string lobbyLevelName = "Main Scene";
 
-    [SerializeField] private float voteTime;
+    [SerializeField] private float voteTime = 3;
     private int[] votes;
 
     public void Init()
@@ -94,16 +94,22 @@ public class LevelManager : DestroyableSingleton<LevelManager>
 
     public void Voted(int index)
     {
+        //Debug.Log("vote");
+
         votes[index]++;
     }
 
     public void UnVoted(int index)
     {
+        //Debug.Log("unvote");
+
         votes[index]--;
     }
 
 	public void SelectLevel()
     {
+        Debug.Log("SelectLevel");
+
         List<int> votable = new List<int>();
 
         for (int i = 0; i < votes.Length; i++)

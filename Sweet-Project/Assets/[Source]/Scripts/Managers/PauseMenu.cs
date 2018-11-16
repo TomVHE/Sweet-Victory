@@ -5,7 +5,7 @@ using UnityEngine;
 using Rewired;
 using UnityEngine.EventSystems;
 
-public class PauseMenu : Singleton<PauseMenu> 
+public class PauseMenu : DestroyableSingleton<PauseMenu> 
 {
 	//script
 	public SettingsManager settingsScript;

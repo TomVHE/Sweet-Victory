@@ -158,12 +158,13 @@ namespace Core.Damage
             //return IsAlive ? Color.white : new Color(0.9f, 0.25f, 0.2f);
             return Color.white;
         }
-        #endif
+#endif
 
         #endregion
 
         #region Events
 
+        //public event Action<Vector3> Damaged, Healed;
         public event Action<HitInfo> Damaged, Healed;
         public event Action<DamageChangeInfo> LostLife, GainedLife, LivesChanged, DamageChanged, Finished;
 
@@ -285,7 +286,7 @@ namespace Core.Damage
 
             output = new HitInfo
             {
-                damageInfo = info,
+                damageChangeInfo = info,
                 damagePoint = hitPosition
             };
 
@@ -336,24 +337,24 @@ namespace Core.Damage
 
         public void AddDamage(int damageAddition, HitInfo hit)
         {
-            hit.damageInfo.oldDamage = CurrentDamage;
+            hit.damageChangeInfo.oldDamage = CurrentDamage;
 
             CurrentDamage += Mathf.Abs(damageAddition);
             CurrentDamage = Mathf.Clamp(CurrentDamage, 0, maxDamage);
 
-            hit.damageInfo.oldDamage = CurrentDamage;
+            hit.damageChangeInfo.oldDamage = CurrentDamage;
 
             Damaged?.Invoke(hit);
         }
 
         public void SubtractDamage(int damageSubtraction, HitInfo hit)
         {
-            hit.damageInfo.oldDamage = CurrentDamage;
+            hit.damageChangeInfo.oldDamage = CurrentDamage;
 
             CurrentDamage -= Mathf.Abs(damageSubtraction);
             CurrentDamage = Mathf.Clamp(CurrentDamage, 0, maxDamage);
 
-            hit.damageInfo.oldDamage = CurrentDamage;
+            hit.damageChangeInfo.oldDamage = CurrentDamage;
 
             Healed?.Invoke(hit);
         }

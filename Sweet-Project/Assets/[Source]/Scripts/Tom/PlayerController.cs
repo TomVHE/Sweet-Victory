@@ -347,8 +347,9 @@ namespace Tom
                     {
                         float knockback = 1f + (damageable.configuration.CurrentDamage / 100f); //EDIT
 
-                        var info = new HitInfo
+                        var hitInfo = new HitInfo
                         {
+                            damageChangeInfo = new DamageChangeInfo(),
                             damagePoint = hit.point
                         };
 
@@ -358,7 +359,7 @@ namespace Tom
                         {
                             if (canKnockBack)
                             {
-                                damageable.configuration.AddDamage(damagePerHit, info);
+                                damageable.configuration.AddDamage(damagePerHit, hitInfo);
                                 playersHit.Add(player);
                             }
                         }
@@ -376,69 +377,8 @@ namespace Tom
                         }
                     }
                 }
-                /*
-                if (hit.transform.root.tag == "Player")
-                {
-                    PlayerController player = hit.transform.root.GetComponentInChildren<PlayerController>();
-                    if (player == null)
-                        Debug.LogError("ERROR: Couldn't find PlayerController");
-                    //DamageableBehaviour damageable = hit.transform.root.GetComponentInChildren<DamageableBehaviour>();
-                    DamageableBehaviour[] damageables = hit.transform.root.GetComponentsInChildren<DamageableBehaviour>();
-                    
-                    var myAlignment = myDamageableBehaviour.configuration.AlignmentProvider;
-
-                    foreach (var damageable in damageables)
-                    {
-                        if (damageable != null && myAlignment != null)
-                        {
-                            float knockback = 1f + (damageable.configuration.CurrentDamage / 100f); //EDIT
-
-                            var info = new HitInfo();
-
-                            damageable.configuration.CheckDamage
-                            (
-                                damagePerHit,
-                                myAlignment,
-                                hand.position,
-                                out info
-                            );
-
-                            //MuscleCollisionBroadcaster broadcaster = hit.transform.GetComponentInChildren<MuscleCollisionBroadcaster>();
-                            MuscleCollisionBroadcaster broadcaster = hit.transform.GetComponent<MuscleCollisionBroadcaster>();
-                            print(broadcaster);
-
-                            bool canKnockBack = (myAlignment != damageable.configuration.AlignmentProvider);
-
-                            if (canKnockBack)
-                            {
-                                damageable.configuration.AddDamage(damagePerHit, info);
-                            }
-
-                            Debug.Log(string.Format("Attacker = {0} " +
-                                "Victim = {1}" +
-                                "Can Attack? = {2} ", myDamageableBehaviour.configuration.playerID, damageable.configuration.playerID, canKnockBack));
-                            
-                            if (broadcaster != null && canKnockBack)
-                            {
-                                print("Name: " + broadcaster.transform.name);
-                                print(damageable.configuration.CurrentDamage);
-                                Vector3 heading = hit.point - hand.position;
-                                float distance = heading.magnitude;
-                                Vector3 direction = heading / distance;
-
-                                broadcaster.Hit(5, direction * (baseKnockback * (knockback * (damageable.configuration.CurrentDamage/100f))), hit.point); //Edit this
-                                //broadcaster.Hit(5, direction * (jump), hit.point); //Edit this
-                            }
-                            else
-                            {
-                                Debug.Log("Broadcaster is NULL");
-                            }
-                        }
-                    }
-                }
-                */
-                }
             }
+        }
 
         public void Swing(int _value)
         {
@@ -485,8 +425,9 @@ namespace Tom
                     {
                         float knockback = 1f + (damageable.configuration.CurrentDamage / 100f); //EDIT
 
-                        var info = new HitInfo
+                        var hitInfo = new HitInfo
                         {
+                            damageChangeInfo = new DamageChangeInfo(),
                             damagePoint = hit.point
                         };
 
@@ -497,7 +438,7 @@ namespace Tom
                         {
                             if (canKnockBack)
                             {
-                                damageable.configuration.AddDamage((weapon != null ? weapon.damage : damagePerHit), info);
+                                damageable.configuration.AddDamage((weapon != null ? weapon.damage : damagePerHit), hitInfo);
                                 playersHit.Add(player);
                             }
                         }
