@@ -44,7 +44,7 @@ public class MatchManager : MonoBehaviour
     public void BeginPlay()
     {
         IsGameActive = true;
-        //StartCoroutine
+        StartCoroutine(Timer());
     }
 
     private IEnumerator Timer()

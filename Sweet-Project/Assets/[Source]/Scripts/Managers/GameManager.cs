@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     public static void OnSelectedLevel()
     {
         // Fall to level
+        //MatchManager.IsGameActive = true;
+        //MatchManager.BeginPlay();
         MatchManager.BeginPlay();
     }
 

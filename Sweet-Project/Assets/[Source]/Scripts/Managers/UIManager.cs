@@ -92,7 +92,7 @@ public class UIManager : DestroyableSingleton<UIManager>
 
     public void Join(DamageableBehaviour player)
     {
-        print(player.configuration.playerID);
+        //print(player.configuration.playerID);
         players.Add(player);
         playerIcons[player.configuration.playerID].SetBool("PlayerJoined", true);
     }
