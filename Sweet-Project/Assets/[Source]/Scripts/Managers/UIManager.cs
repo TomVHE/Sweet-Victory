@@ -64,16 +64,27 @@ public class UIManager : DestroyableSingleton<UIManager>
     {
         for (int i = 0; i < players.Count; i++)
         {
-            UpdateDamage(i, players[i].configuration.CurrentDamage);
-            for (int j = 1; j < 3; j++)
+            if (players[i].configuration.IsAlive)
             {
-                Animator heart = playerIcons[i].transform.GetChild(j).GetComponentInChildren<Animator>();
-                if(players[i].configuration.CurrentLives < j)
+                UpdateDamage(i, players[i].configuration.CurrentDamage);
+                for (int j = 1; j < 3; j++)
                 {
-                    if (!heart.GetBool("LoseHeart"))
+                    Animator heart = playerIcons[i].transform.GetChild(j).GetComponentInChildren<Animator>();
+                    if (players[i].configuration.CurrentLives < j)
                     {
-                        heart.SetBool("LoseHeart", true);
+                        if (!heart.GetBool("LoseHeart"))
+                        {
+                            heart.SetBool("LoseHeart", true);
+                        }
                     }
+                }
+            }
+            else
+            {
+                Animator cross = playerIcons[i].transform.GetChild(0).GetChild(2).GetComponent<Animator>();
+                if (!cross.GetBool("Dead"))
+                {
+                    cross.SetBool("Dead", true);
                 }
             }
         }
