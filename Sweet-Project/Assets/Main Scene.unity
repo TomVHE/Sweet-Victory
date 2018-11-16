@@ -30630,12 +30630,42 @@ Prefab:
     - target: {fileID: 114032715714366350, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
         type: 2}
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[12]._actionId
-      value: 33
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 114032715714366350, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
         type: 2}
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[9]._actionId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114032715714366350, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[20]._actionId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114032715714366350, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[19]._actionId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114032715714366350, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[21]._actionId
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114032715714366350, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[23]._actionId
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114032715714366350, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[24]._actionId
       value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 114032715714366350, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[24]._axisContribution
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114728816212813558, guid: 0e3c0d2f30b6e684db51f8afd7925ea2, type: 2}
