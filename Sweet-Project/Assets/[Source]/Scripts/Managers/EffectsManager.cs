@@ -17,7 +17,7 @@ public class EffectsManager : DestroyableSingleton<EffectsManager>
 
 	[Space(10)]
 	public AudioSource jumpSource;
-	public AudioSource landSource;
+	//public AudioSource punchSource;
 	public AudioSource hitSource;
 	public AudioSource kaboomSource;
 
@@ -39,10 +39,12 @@ public class EffectsManager : DestroyableSingleton<EffectsManager>
 	private void DeathExplosionParticle (DamageChangeInfo info, Vector3 deathPos)
 	{
 		Destroy(Instantiate(deathExplosionParticle, deathPos, Quaternion.identity).gameObject, 2);
+		kaboomSource.Play();
 	}
     public void HitParticle(HitInfo info)
     {
         Destroy(Instantiate(hitParticle, info.damagePoint, Quaternion.identity).gameObject, 1);
+		hitSource.Play();
     }
     /*
     public void HitParticle(Vector3 pos)
@@ -53,6 +55,7 @@ public class EffectsManager : DestroyableSingleton<EffectsManager>
 	public void JumpParticle (Vector3 pos)
 	{
         Destroy(Instantiate(jumpParticle, pos, Quaternion.identity).gameObject, 1);
+		jumpSource.Play();
 	}
 	public void LandParticle (Vector3 pos)
 	{
