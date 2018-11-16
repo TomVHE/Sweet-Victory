@@ -226,6 +226,7 @@ namespace Core.Damage
                 Finished?.Invoke(info);
             }
 
+            LivesChanged?.Invoke(info);
             LostLife?.Invoke(info);
         }
 

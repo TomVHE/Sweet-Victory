@@ -5,9 +5,21 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Core.Utilities;
 using UnityEngine.SceneManagement;
+using Rewired;
 
 public class LevelManager : DestroyableSingleton<LevelManager>
 {
+
+    private Rewired.Player RewiredPlayer
+    {
+        get
+        {
+            return ReInput.isReady ? ReInput.players.GetPlayer(0) : null;
+        }
+    }
+
+
+
     public Level[] levels = new Level[0];
 
     public Level CurrentLevel { get; private set; }
@@ -114,6 +126,19 @@ public class LevelManager : DestroyableSingleton<LevelManager>
 
     public void Update()
     {
+        if (RewiredPlayer.GetButtonDown("Level1"))
+        {
+            LoadLevel(1);
+        }
+        if (RewiredPlayer.GetButtonDown("Level2"))
+        {
+            LoadLevel(2);
+        }
+        if (RewiredPlayer.GetButtonDown("Level3"))
+        {
+            LoadLevel(3);
+        }
+
         List<int> combinedVotes = new List<int>();
 
         for (int i = 0; i < votes.Length; i++)
@@ -168,8 +193,17 @@ public class LevelManager : DestroyableSingleton<LevelManager>
         spawning = false;
     }
 
-    public void LoadLevel()
+    public void LoadLevel(int selectedLevel)
     {
+        for (int level = 0; level < levels.Length; level++)
+        {
+            levels[level].levelObject.SetActive(false);
+        }
+
+
+        levels[selectedLevel].levelObject.SetActive(true);
+
+        GameManager.OnSelectedLevel();
 
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Core.Damage;
 
 public class MatchManager : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class MatchManager : MonoBehaviour
     {
         IsGameActive = false;
 
+        foreach (var player in GameManager.PlayerPool.players)
+        {
+            //player.configuration.LostLife += (damageInfo) => DeathExplosionParticle(damageInfo, player.Position);
+            //player.DamageableConfig.LostLife += () => CheckLives);
+            //player.DamageableConfig.LostLife += (CheckLives() => );
+            player.DamageableConfig.LostLife += CheckLives;
+        }
         //StartCoroutine(WaitForPlayers());
     }
 
@@ -89,5 +97,21 @@ public class MatchManager : MonoBehaviour
         playerOrder.Sort();
 
         return "Player " + playerOrder[0];
+    }
+
+    private void CheckLives(DamageChangeInfo info)
+    {
+        int peopleLeft = 0;
+        foreach (PoolablePlayer player in GameManager.PlayerPool.players)
+        {
+            if (player.CurrentLives > 0)
+            {
+                peopleLeft++;
+            }
+        }
+        if (peopleLeft == 1)
+        {
+            MatchEnd(GetFistPlace() + " won!");
+        }
     }
 }

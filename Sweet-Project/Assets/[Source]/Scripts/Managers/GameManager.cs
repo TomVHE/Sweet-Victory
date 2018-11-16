@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!MatchManager.IsGameActive)
-            return;
+        //if (!MatchManager.IsGameActive)
+        //return;
 
         // Get camera data
         List<PoolablePlayer> players = PlayerPool.players;
@@ -52,16 +52,11 @@ public class GameManager : MonoBehaviour
 
     public static void OnSelectedLevel()
     {
-        // Fall to level
-        //MatchManager.IsGameActive = true;
-        //MatchManager.BeginPlay();
         MatchManager.BeginPlay();
     }
 
     public static void LoadLobbyLevel()
     {
-
         LevelManager.ResetLevel();
-        //SceneManager.LoadScene(lobbyLevelName, LoadSceneMode.Single);
     }
 }
