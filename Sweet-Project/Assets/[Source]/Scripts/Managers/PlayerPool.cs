@@ -102,7 +102,10 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
             {
                 Level level = levelManager.levels[0];
 
-                if (level == null) { Debug.LogError("HubLevel is NULL"); }
+                if (level == null)
+                {
+                    //Debug.LogError("HubLevel is NULL");
+                }
 
                 if (playerMaps[id].controllers.joystickCount > 0)
                 {
@@ -131,7 +134,7 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         bool validation = input != null;
         if(!validation)
         {
-            Debug.LogError("PlayerPool.cs must have a pool object assigned!"); //Temp
+            //Debug.LogError("PlayerPool.cs must have a pool object assigned!"); //Temp
         }
 
         return validation;
@@ -149,7 +152,7 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         }
         else
         {
-            Debug.LogError("Couldn't Initialize, levelManager.currentlevel is NULL");
+            //Debug.LogError("Couldn't Initialize, levelManager.currentlevel is NULL");
         }
     }
     public void Initialize(int playerID, Vector3 position)
@@ -164,12 +167,12 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         playerObject.name = (playerObject.name + playerID);
 
         PlayerController controller = playerObject.GetComponentInChildren<PlayerController>();
-        if (controller == null)
-            Debug.LogError("ERROR: Couldn't find PlayerController");
+        //if (controller == null)
+            //Debug.LogError("ERROR: Couldn't find PlayerController");
 
         DamageableBehaviour initDamageable = playerObject.GetComponentInChildren<DamageableBehaviour>();
-        if (initDamageable == null)
-            Debug.LogError("ERROR: Couldn't find DamageableBehaviour");
+        //if (initDamageable == null)
+            //Debug.LogError("ERROR: Couldn't find DamageableBehaviour");
 
         controller.myID = playerID;
 
@@ -195,7 +198,7 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         }
         else
         {
-            Debug.LogError("No DamageableBehaviour component on player object");
+            //Debug.LogError("No DamageableBehaviour component on player object");
         }
 
         PlayerJoined?.Invoke(playerID);
@@ -211,7 +214,7 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         }
         else
         {
-            Debug.LogError("Couldn't Spawn, levelManager.currentlevel is NULL");
+            //Debug.LogError("Couldn't Spawn, levelManager.currentlevel is NULL");
         }
     }
     public void Spawn(int playerID, Vector3 position)
@@ -223,7 +226,7 @@ public class PlayerPool : DestroyableSingleton<PlayerPool>
         //Debug.Log("spawning at " + characters[playerID].damageable.transform.root.name);
         if(players[playerID] == null)
         {
-            Debug.LogError("Couldn't Spawn, character is NULL");
+            //Debug.LogError("Couldn't Spawn, character is NULL");
         }
 
         players[playerID].IsAlive = true;
@@ -340,7 +343,7 @@ public class PoolablePlayer : IComparable<PoolablePlayer>
             }
             else
             {
-                Debug.LogError("PoolablePlayer doesn't have an DamageableBehaviour is NULL");
+                //Debug.LogError("PoolablePlayer doesn't have an DamageableBehaviour is NULL");
                 return null;
             }
         }

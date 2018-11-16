@@ -30666,6 +30666,56 @@ Prefab:
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[24]._axisContribution
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[3].color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[3].color.g
+      value: 0.5748935
+      objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[2].color.r
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[2].color.g
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[2].color.b
+      value: 0.29999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[0].color.r
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[0].color.g
+      value: 0.19999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[1].color.r
+      value: 0.29999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[1].color.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114276523011054236, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: teams.Array.data[1].color.b
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114728816212813558, guid: 0e3c0d2f30b6e684db51f8afd7925ea2, type: 2}
     - {fileID: 114469319002383882, guid: 0e3c0d2f30b6e684db51f8afd7925ea2, type: 2}
