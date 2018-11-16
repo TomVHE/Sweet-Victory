@@ -17,10 +17,12 @@ public class LevelManager : DestroyableSingleton<LevelManager>
     [SerializeField] private float voteTime = 3;
     private int[] votes;
 
-    private bool spawning;
+    private bool spawning = false;
 
     public void Init()
     {
+        spawning = false;
+
         for (int level = 1; level < levels.Length; level++)
         {
             levels[level].levelObject.SetActive(false);
@@ -122,17 +124,17 @@ public class LevelManager : DestroyableSingleton<LevelManager>
             }
         }
 
-        if(combinedVotes.Count > 0) // -1
+        if(combinedVotes.Count > 0)
         {
-            if (!spawning)
+            if (spawning == false)
             {
                 Invoke("SelectLevel", voteTime);
             }
         }
-        else
+        else if(combinedVotes.Count  <= 0)
         {
-            spawning = false;
             CancelInvoke("SelectLevel");
+            spawning = false;
         }
     }
 
@@ -161,6 +163,9 @@ public class LevelManager : DestroyableSingleton<LevelManager>
         levels[selectedLevel].levelObject.SetActive(true);
 
         GameManager.OnSelectedLevel();
+
+        votes = new int[0];
+        spawning = false;
     }
 
     public void LoadLevel()

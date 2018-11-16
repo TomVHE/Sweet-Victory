@@ -126,5 +126,5 @@ Material:
     - _MainColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     - _RimColor: {r: 0, g: 1, b: 0.8758622, a: 0}
     - _ShadowColor: {r: 0.39215687, g: 0, b: 0, a: 1}
-    - _SkinColor: {r: 1, g: 0, b: 0, a: 1}
+    - _SkinColor: {r: 0.29999998, g: 0.5, b: 0.75, a: 1}
     - _SpecularColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraSystem : MonoBehaviour
 {
-    public List<Transform> testList = new List<Transform>();
-
     [Range(0.01f, 5f)]
     public float smoothTime = 1f;
 
@@ -23,7 +21,9 @@ public class CameraSystem : MonoBehaviour
     
     public void Init()
     {
-        cam = GetComponent<Camera>();
+        //cam = GetComponent<Camera>();
+        cam = Camera.main;
+
         if(positionOffset.z != 0)
         {
             zoomLimit = -positionOffset.z;

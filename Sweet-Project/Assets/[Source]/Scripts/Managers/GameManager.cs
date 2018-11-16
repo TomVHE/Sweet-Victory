@@ -10,21 +10,18 @@ public class GameManager : MonoBehaviour
     private static GameManager Instance;
 
     #region Managers and Systems
-    public static PlayerPool PlayerPool
-    {
-        get; private set;
-    }
+
+    public static PlayerPool PlayerPool { get; private set; }
     public static MatchManager MatchManager { get; private set; }
     public static UIManager UIManager { get; private set; }
     public static CameraSystem CameraSystem { get; private set; }
     public static LevelManager LevelManager { get; private set; }
+
     #endregion
 
     private void Awake()
     {
         Instance = this;
-
-        Debug.Log("Joppiesaus");
 
         PlayerPool = GetComponent<PlayerPool>();
         MatchManager = GetComponent<MatchManager>();

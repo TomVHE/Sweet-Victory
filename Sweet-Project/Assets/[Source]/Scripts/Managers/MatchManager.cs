@@ -43,6 +43,7 @@ public class MatchManager : MonoBehaviour
 
     public void BeginPlay()
     {
+        IsGameActive = true;
         //StartCoroutine
     }
 

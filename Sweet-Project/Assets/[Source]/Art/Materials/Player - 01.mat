@@ -100,6 +100,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HitEffect: 0
     - _LightIntensity: 0
     - _Metallic: 0
     - _Mode: 0
@@ -125,5 +126,5 @@ Material:
     - _MainColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     - _RimColor: {r: 0, g: 1, b: 0.8758622, a: 0}
     - _ShadowColor: {r: 0, g: 0, b: 0.39215687, a: 1}
-    - _SkinColor: {r: 0, g: 0, b: 1, a: 1}
+    - _SkinColor: {r: 0.75, g: 0.19999996, b: 0, a: 1}
     - _SpecularColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
