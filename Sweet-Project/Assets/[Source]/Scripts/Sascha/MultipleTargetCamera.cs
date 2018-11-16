@@ -52,7 +52,7 @@ public class MultipleTargetCamera : MonoBehaviour {
 	private GameObject GetPlayer (int playerID)
 	{
         //GameObject playerRoot  = playerPool.characters[playerID].MyTransform.root.gameObject;
-        GameObject playerRoot = playerPool.characters[playerID].playerController.root.gameObject;
+        GameObject playerRoot = playerPool.players[playerID].movementController.root.gameObject;
         return (playerRoot);
 	}
 

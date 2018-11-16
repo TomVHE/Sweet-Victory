@@ -22,9 +22,9 @@ namespace Tom
         [NonSerialized] public int myID;
         [NonSerialized] public Transform root;
 
-        [Header("Managers")]
-        public SoundManager soundManager;
-        public ParticleManager particleManager;
+        //[Header("Managers")]
+        //public SoundManager soundManager;
+        //public ParticleManager particleManager;
 
         public Image test;
 

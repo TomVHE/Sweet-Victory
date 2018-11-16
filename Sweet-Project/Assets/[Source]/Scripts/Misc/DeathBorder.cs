@@ -43,7 +43,7 @@ public class DeathBorder : MonoBehaviour
         }
         else if(other.tag == "Object")
         {
-            other.transform.position = levelManager.currentlevel.RandomSpawnPoint();
+            other.transform.position = levelManager.CurrentLevel.RandomSpawnPoint();
             return;
         }
 	}

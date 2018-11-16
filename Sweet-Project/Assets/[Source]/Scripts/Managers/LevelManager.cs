@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using Core.Utilities;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : DestroyableSingleton<LevelManager>
 {
     //[SerializeField]
+    public string mainScene = "Main Scene";
+
     public Level[] levels = new Level[0];
 
     public Level CurrentLevel { get; private set; }
@@ -24,6 +27,11 @@ public class LevelManager : DestroyableSingleton<LevelManager>
         votes = new int[levels.Length];
 
         StartCoroutine(WaitForVotes());
+    }
+
+    public void ResetLevel()
+    {
+        SceneManager.LoadScene(mainScene, LoadSceneMode.Single);
     }
 
     private IEnumerator WaitForVotes()

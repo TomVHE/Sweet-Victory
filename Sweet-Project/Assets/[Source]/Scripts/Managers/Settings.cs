@@ -1,61 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Settings : MonoBehaviour {
 
-/*
-	Resolution DROPDOWN:
-	multiple buttons
-	- + to switch between resolutions
-*/
-	public int width, height;
-	public enum ResolutionSize {Small, Medium, Big, Glorious4K}
-	public ResolutionSize _Size;
-	public bool fullscreen;
 
-	void SetState (ResolutionSize state)
-	{
-		_Size = state;
-		SetResolution();
-	}	
-	public void SetResolution ()
-	{
-		switch(_Size)
-		{
-			case ResolutionSize.Small:
+	public AudioMixer audioMixer;
 
-				width = 720;
-				height = 480;
-				Resolution(width, height, fullscreen);
-				
-			break;
-
-			case ResolutionSize.Medium:
-
-				width = 1280;
-				height = 720;
-				Resolution(width, height, fullscreen);
-
-			break;
-
-			case ResolutionSize.Big:
-
-				width = 1920;
-				height = 1080;
-				Resolution(width, height, fullscreen);
-
-			break;
-
-			case ResolutionSize.Glorious4K:
-
-				width = 3840;
-				height = 2160;
-				Resolution(width, height, fullscreen);
-
-			break;
-		}
-	}
 	#region Graphics
 	public void VSync (bool state)
 	{
@@ -77,7 +29,7 @@ public class Settings : MonoBehaviour {
 		else
 		{
 			Screen.fullScreen = false;
-			Resolution(width, height, false);
+			Resolution(1280, 800, false);
 		}
 	}
 	public void Resolution (int wid, int hei, bool state)
@@ -86,25 +38,17 @@ public class Settings : MonoBehaviour {
 	}
 	#endregion
 	#region Audio
-	public void MasterVolume (int value)
+	public void MasterVolume (float value)
 	{
-
+		audioMixer.SetFloat("MasterVolume", value);
 	}
-	public void EffectVolume (int value)
+	public void EffectVolume (float value)
 	{
-		
+		audioMixer.SetFloat("EffectsVolume", value);
 	}
-	public void MusicVolume (int value)
+	public void MusicVolume (float value)
 	{
-		
-	}
-	public void Announcer (bool state)
-	{
-		
+		audioMixer.SetFloat("MusicVolume", value);
 	}
 	#endregion
-	public void ControllerRemap (int buttonID, string newKey)
-	{
-		//In case this will happen
-	}
 }
