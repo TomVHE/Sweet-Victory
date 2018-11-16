@@ -8,13 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : DestroyableSingleton<LevelManager>
 {
-    //[SerializeField]
-    public string mainScene = "Main Scene";
-
     public Level[] levels = new Level[0];
 
     public Level CurrentLevel { get; private set; }
-    
+
+    [SerializeField] private string lobbyLevelName = "Main Scene";
+
     [SerializeField] private float voteTime;
     private int[] votes;
 
@@ -31,7 +30,7 @@ public class LevelManager : DestroyableSingleton<LevelManager>
 
     public void ResetLevel()
     {
-        SceneManager.LoadScene(mainScene, LoadSceneMode.Single);
+        SceneManager.LoadScene(lobbyLevelName, LoadSceneMode.Single);
     }
 
     private IEnumerator WaitForVotes()

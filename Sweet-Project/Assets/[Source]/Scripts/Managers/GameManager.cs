@@ -9,9 +9,6 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager Instance;
 
-    [SerializeField]
-    private string lobbyLevelName;
-
     #region Managers and Systems
     public static PlayerPool PlayerPool
     {
@@ -62,8 +59,10 @@ public class GameManager : MonoBehaviour
         MatchManager.BeginPlay();
     }
 
-    public void LoadLobbyLevel()
+    public static void LoadLobbyLevel()
     {
-        SceneManager.LoadScene(lobbyLevelName, LoadSceneMode.Single);
+
+        LevelManager.ResetLevel();
+        //SceneManager.LoadScene(lobbyLevelName, LoadSceneMode.Single);
     }
 }

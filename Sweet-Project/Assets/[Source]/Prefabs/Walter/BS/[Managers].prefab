@@ -19,11 +19,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4457377099233478}
+  - component: {fileID: 114784993800111998}
   - component: {fileID: 114032715714366350}
+  - component: {fileID: 114727821267863176}
   - component: {fileID: 114017497576041638}
   - component: {fileID: 114965676238234984}
   - component: {fileID: 114865515469735738}
   - component: {fileID: 114842987567503952}
+  - component: {fileID: 114276523011054236}
+  - component: {fileID: 114469319002383882}
+  - component: {fileID: 114728816212813558}
   m_Layer: 0
   m_Name: '[Managers]'
   m_TagString: Manager
@@ -751,6 +756,111 @@ MonoBehaviour:
     customControllerIdCounter: 1
   _controllerDataFiles: {fileID: 11400000, guid: 3e4c13b83fb400b448bb3e2bbacfe954,
     type: 2}
+--- !u!114 &114276523011054236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1375541255538568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccb7408e8ad61a41aab09733cd425ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teams:
+  - material: {fileID: 2100000, guid: be9ba5eacee2eec419611124e3112022, type: 2}
+    color: {r: 1, g: 0, b: 0, a: 1}
+    alignment: {fileID: 11400000, guid: c82a5ae287021294a816aca0243b76de, type: 2}
+  - material: {fileID: 2100000, guid: 788133912c2edd646a7759e7314f3ead, type: 2}
+    color: {r: 0, g: 0, b: 1, a: 1}
+    alignment: {fileID: 11400000, guid: c95b251b288d4a44c97f005c655c3078, type: 2}
+  - material: {fileID: 2100000, guid: e052a853bf1c2ee4e8cdabfd3a362674, type: 2}
+    color: {r: 0, g: 1, b: 0, a: 1}
+    alignment: {fileID: 11400000, guid: 1f6b662d5aba2d849b2d98c97929dcea, type: 2}
+  - material: {fileID: 2100000, guid: b58662e9646183847911a0fc98e08bcf, type: 2}
+    color: {r: 0.7490196, g: 0.5019608, b: 0, a: 1}
+    alignment: {fileID: 11400000, guid: a34e0f7d17301e54aa274c5af32b9e53, type: 2}
+  playerPrefab: {fileID: 1989710265998024, guid: cd91b78071c3c1e44a946ee606b73cbf,
+    type: 2}
+  respawnTime: 2
+  pool: {fileID: 0}
+--- !u!114 &114469319002383882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1375541255538568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f918c62c9adb7458f1c7a2b48effd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainScene: WaltersBS
+  levels:
+  - levelObject: {fileID: 0}
+    spawnPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - levelObject: {fileID: 0}
+    spawnPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - levelObject: {fileID: 0}
+    spawnPoints:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  voteTime: 0
+--- !u!114 &114727821267863176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1375541255538568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446527c78877ebb4d9b99a53f625a4dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testList: []
+  smoothTime: 1
+  lookOffset: {x: 0, y: 1, z: 0}
+  positionOffset: {x: 0, y: 3, z: -10}
+  minZoom: 60
+  maxZoom: 10
+--- !u!114 &114728816212813558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1375541255538568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c5ff8028336d445ab5cf03733e2c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpParticle: {fileID: 0}
+  landParticle: {fileID: 0}
+  hitParticle: {fileID: 0}
+  deathExplosionParticle: {fileID: 0}
+  jumpSource: {fileID: 0}
+  landSource: {fileID: 0}
+  hitSource: {fileID: 0}
+  kaboomSource: {fileID: 0}
+--- !u!114 &114784993800111998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1375541255538568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3a8a2d436a89649aca3ce9e62ad781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyLevelName: 
 --- !u!114 &114842987567503952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -762,10 +872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4916f475cea90d64590d7b770a3ad71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDuration: 3
   matchDuration: 5
-  endDuration: 5
-  noWinner: 0
 --- !u!114 &114865515469735738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -784,7 +891,6 @@ MonoBehaviour:
   currentTimeScale: 0
   resumeButton: {fileID: 0}
   settingsButton: {fileID: 0}
-  levelSelectObject: {fileID: 0}
 --- !u!114 &114965676238234984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -800,9 +906,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   buttons:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -811,3 +915,5 @@ MonoBehaviour:
   unselected: {r: 0, g: 0, b: 0, a: 0}
   bgColor: {r: 0, g: 0, b: 0, a: 0}
   backButton: {fileID: 0}
+  graphicsFirst: {fileID: 0}
+  audioFirst: {fileID: 0}
