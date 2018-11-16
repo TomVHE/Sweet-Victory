@@ -46,12 +46,6 @@ public class EffectsManager : DestroyableSingleton<EffectsManager>
         Destroy(Instantiate(hitParticle, info.damagePoint, Quaternion.identity).gameObject, 1);
 		hitSource.Play();
     }
-    /*
-    public void HitParticle(Vector3 pos)
-    {
-		Destroy(Instantiate(hitParticle, pos, Quaternion.identity).gameObject, 1);
-	}
-    */
 	public void JumpParticle (Vector3 pos)
 	{
         Destroy(Instantiate(jumpParticle, pos, Quaternion.identity).gameObject, 1);

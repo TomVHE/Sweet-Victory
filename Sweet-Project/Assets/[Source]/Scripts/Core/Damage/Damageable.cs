@@ -92,7 +92,7 @@ namespace Core.Damage
 			{
 				if (Math.Abs(maxDamage) <= Mathf.Epsilon)
 				{
-					Debug.LogError("Max Damage is 0");
+					//Debug.LogError("Max Damage is 0");
 					maxDamage = 1;
 				}
                 return ((float)CurrentDamage / (float)maxDamage);
@@ -108,7 +108,7 @@ namespace Core.Damage
             {
                 if (Math.Abs(maxLives) <= Mathf.Epsilon)
                 {
-                    Debug.LogError("Max Lives is 0");
+                    //Debug.LogError("Max Lives is 0");
                     maxLives = 1;
                 }
                 return ((float)CurrentLives / (float)maxLives);
