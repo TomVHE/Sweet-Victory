@@ -5,6 +5,7 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 using Rewired;
+using Core.Damage;
 
 
 [Serializable]
@@ -26,6 +27,11 @@ public class UIManager : DestroyableSingleton<UIManager>
 
 	//scripts
 	public PauseMenu pausemenu;
+
+    [HideInInspector]
+    public List<DamageableBehaviour> players = new List<DamageableBehaviour>();
+
+    public List<Animator> playerIcons = new List<Animator>();
 
     //Tom
     private void Start()
@@ -53,4 +59,30 @@ public class UIManager : DestroyableSingleton<UIManager>
         string sec = (second >= 10) ? second.ToString() : "0" + second.ToString(); //Tom
 		time.text = minute.ToString() + ":" + ((second >= 0) ? sec : "00"); //Tom
 	}
+
+    private void Update()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            UpdateDamage(i, players[i].configuration.CurrentDamage);
+            for (int j = 1; j < 3; j++)
+            {
+                Animator heart = playerIcons[i].transform.GetChild(j).GetComponentInChildren<Animator>();
+                if(players[i].configuration.CurrentLives < j)
+                {
+                    if (!heart.GetBool("LoseHeart"))
+                    {
+                        heart.SetBool("LoseHeart", true);
+                    }
+                }
+            }
+        }
+    }
+
+    public void Join(DamageableBehaviour player)
+    {
+        print(player.configuration.playerID);
+        players.Add(player);
+        playerIcons[player.configuration.playerID].SetBool("PlayerJoined", true);
+    }
 }

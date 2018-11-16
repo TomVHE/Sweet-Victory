@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2573724, g: 0.33262557, b: 3.023468, a: 1}
+  m_IndirectSpecularColor: {r: 0.25780046, g: 0.33270505, b: 3.023391, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23742,6 +23742,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 481488555}
   m_Mesh: {fileID: 4300000, guid: 5efaf8a9abf437a49b8020412d216ff6, type: 3}
+--- !u!95 &482851298 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95392994674512022, guid: fef9b8aa28876d441a43085bc18e5de4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1301064977}
 --- !u!1 &483629920
 GameObject:
   m_ObjectHideFlags: 0
@@ -29999,6 +30004,11 @@ Prefab:
       propertyPath: uiPlayers.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114017497576041638, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: playerIcons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4457377099233478, guid: 0e3c0d2f30b6e684db51f8afd7925ea2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -30141,6 +30151,26 @@ Prefab:
       propertyPath: pool
       value: 
       objectReference: {fileID: 1800783149}
+    - target: {fileID: 114017497576041638, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: playerIcons.Array.data[0]
+      value: 
+      objectReference: {fileID: 2050390685}
+    - target: {fileID: 114017497576041638, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: playerIcons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1694717996}
+    - target: {fileID: 114017497576041638, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: playerIcons.Array.data[2]
+      value: 
+      objectReference: {fileID: 482851298}
+    - target: {fileID: 114017497576041638, guid: 0e3c0d2f30b6e684db51f8afd7925ea2,
+        type: 2}
+      propertyPath: playerIcons.Array.data[3]
+      value: 
+      objectReference: {fileID: 1159504660}
     m_RemovedComponents:
     - {fileID: 114728816212813558, guid: 0e3c0d2f30b6e684db51f8afd7925ea2, type: 2}
     - {fileID: 114469319002383882, guid: 0e3c0d2f30b6e684db51f8afd7925ea2, type: 2}
@@ -41643,7 +41673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &938542860
 Transform:
   m_ObjectHideFlags: 0
@@ -45781,6 +45811,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1157767873}
   m_Mesh: {fileID: 4300000, guid: 3139041968b0ab444b4d7d7cdc07989b, type: 3}
+--- !u!95 &1159504660 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95848315750854558, guid: fef9b8aa28876d441a43085bc18e5de4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1301064977}
 --- !u!1 &1160493748
 GameObject:
   m_ObjectHideFlags: 0
@@ -48550,6 +48585,16 @@ Prefab:
         type: 2}
       propertyPath: m_MaxValue
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224342207409758560, guid: fef9b8aa28876d441a43085bc18e5de4,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224849768924784440, guid: fef9b8aa28876d441a43085bc18e5de4,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fef9b8aa28876d441a43085bc18e5de4, type: 2}
@@ -56316,6 +56361,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1693611690}
   m_Mesh: {fileID: 4300000, guid: 0bcf8e447d9c8b94db0af8b334a9f37b, type: 3}
+--- !u!95 &1694717996 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95938202432917100, guid: fef9b8aa28876d441a43085bc18e5de4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1301064977}
 --- !u!1 &1695436295
 GameObject:
   m_ObjectHideFlags: 0
@@ -67814,6 +67864,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2046929942}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &2050390685 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95082324401537256, guid: fef9b8aa28876d441a43085bc18e5de4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1301064977}
 --- !u!1 &2051072085
 GameObject:
   m_ObjectHideFlags: 0

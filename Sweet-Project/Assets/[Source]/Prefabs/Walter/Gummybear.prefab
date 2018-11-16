@@ -2698,9 +2698,9 @@ MonoBehaviour:
     playerID: 0
     currentDamage: 100
     minDamage: 50
-    maxDamage: 300
+    maxDamage: 999
     startingDamage: 50
-    currentLives: 59
+    currentLives: 3
     maxLives: 3
     startingLives: 3
     alignment: {fileID: 0}
@@ -2996,8 +2996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f933a80bb453247ab97efc25287914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 0}
-  particleManager: {fileID: 0}
   test: {fileID: 0}
   speed: 3
   tilt: 15

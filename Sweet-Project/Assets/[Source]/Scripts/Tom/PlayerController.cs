@@ -140,6 +140,7 @@ namespace Tom
             }
 
             myDamageableBehaviour = GetComponentInParent<DamageableBehaviour>();
+            FindObjectOfType<UIManager>().Join(myDamageableBehaviour);
 
             //Debug.Log(string.Format("Component In Parent = {0}", myDamageableBehaviour.name));
 
@@ -369,7 +370,6 @@ namespace Tom
                         if (broadcaster != null && canKnockBack)
                         {
                             Vector3 heading = hit.point - hand.position;
-                            print(hand.transform.forward);
                             
                             Vector3 direction = hand.transform.forward;
 
