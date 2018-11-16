@@ -68,8 +68,7 @@ public class MatchManager : MonoBehaviour
             }
             GameManager.UIManager.UpdateTimer(minutes, seconds);
         }
-        MatchEnd("Time's up!");
-        //MatchEnd((noWinner) ? "Time's up!" : GetFistPlace() + " won!");
+        MatchEnd("Time's up!");        //MatchEnd((noWinner) ? "Time's up!" : GetFistPlace() + " won!");
     }
 
     private void MatchEnd(string endMessage)
